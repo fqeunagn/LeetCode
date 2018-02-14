@@ -8,45 +8,45 @@
  * }
  */
 class Solution {
-    public TreeNode constructMaximumBinaryTree(int[] nums) {
-    	
+    public TreeNode constructMaximumBinaryTree(int[] nums) 
+    {
     	//check null
     	if( nums==null || nums.length==0 )
     	{
     		return null;
     	}
     	
-    	//find max number and index
-    	int maxIndex = 0;
-    	int max = 0;
-    	for( int i=0; i<nums.length; i++ )
+    	return constructMaximumBinaryTree( nums, 0, nums.length-1 );
+    }
+    
+    private TreeNode constructMaximumBinaryTree( int[] nums, int left, int right )
+    {
+    	if( left > right )
     	{
-    		if( nums[i] > max )
+    		return null;
+    	}
+    	
+    	int maxIndex = getMax( nums, left, right );
+    	TreeNode result = new TreeNode(nums[maxIndex]);
+    	
+    	//recursive 
+    	result.left = constructMaximumBinaryTree( nums, left, maxIndex-1 );
+    	result.right = constructMaximumBinaryTree( nums, maxIndex+1, right );
+    	
+    	return result;
+    }
+    
+    private int getMax( int[] nums, int left, int right )
+    {
+    	int maxIndex = left;
+    	for( int i=left; i<=right; i++ )
+    	{
+    		if( nums[i] > nums[maxIndex] )
     		{
-    			max = nums[i];
     			maxIndex = i;
     		}
     	}
-    	TreeNode result = new TreeNode(max);
     	
-    	//split array 
-    	int[] left = new int[maxIndex];
-    	int[] right = new int[nums.length-maxIndex-1];
-    	
-    	for( int i=0; i<maxIndex; i++ )
-    	{
-    		left[i] = nums[i];
-    	}
-  
-    	for( int i=maxIndex+1; i<nums.length; i++ )
-    	{
-    		right[i-maxIndex-1] = nums[i];
-    	}
-    	
-    	//recursive 
-    	result.left = constructMaximumBinaryTree( left );
-    	result.right = constructMaximumBinaryTree( right );
-    	
-    	return result;
+    	return maxIndex;
     }	
 }
