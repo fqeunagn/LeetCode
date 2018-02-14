@@ -1,30 +1,19 @@
 class Solution {
-    public int numJewelsInStones(String J, String S) {
-    	int[] chars = new int[26*2];
+    public int numJewelsInStones(String J, String S) 
+    {
+    	int[] chars = new int['z' + 1];
     	int result = 0;
     	
-    	for( int i =0; i< J.length(); i++ )
+    	for( char i : J.toCharArray() )
     	{
-    		chars[ getCharInt(J.charAt(i)) ] = 1;
+    		chars[ i ] = 1;
     	}
     	
-    	for( int i=0; i<S.length(); i++ )
+    	for( char i : S.toCharArray() )
     	{
-    		result += chars[getCharInt(S.charAt(i))]==1?1:0;
+    		result += chars[ i ]==1?1:0;
        	}
     	
         return result;
-    }
-    
-    private int getCharInt( char i )
-    {
-    	if( i>= 'a' )
-    	{
-    		return 26 + (i - 'a');
-    	}else
-    	{
-    		return i - 'A';
-    	}
-    }
-    
+    }     
 }
