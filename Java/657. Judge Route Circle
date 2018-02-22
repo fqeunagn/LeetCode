@@ -1,28 +1,12 @@
 class Solution {
     public boolean judgeCircle(String moves) {
-        int x = 0; 
-        int y = 0;
+        int[] result = new int[26];
+
         for( char m : moves.toCharArray() )  
         {
-            switch (m)
-            {
-                case 'U':
-                    y++;
-                    break;
-                case 'D':
-                    y--;
-                    break;
-                case 'L':
-                    x--;
-                    break;
-                case 'R':
-                    x++;
-                    break;
-                default:
-                    break;
-            }
+            result[ m-'A' ]++;
         }
         
-        return x==0&&y==0;
+        return result['U'-'A']==result['D'-'A']&&result['L'-'A']==result['R'-'A'];
     }
 }
