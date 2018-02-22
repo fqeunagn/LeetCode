@@ -1,3 +1,4 @@
+```
 	public int[] countBits(int num) {
 		// 使用公式1，更快
 		
@@ -107,3 +108,4 @@
 		
 	    return result;
 	}
+```
