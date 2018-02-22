@@ -1,0 +1,31 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> result = new ArrayList<Integer>(right-left+1);
+        for( int i=left; i<=right; i++ )
+        {
+            if( isSelfDividing(i) )
+            {
+                result.add(i);
+            }
+        }
+        
+        return result;
+    }
+    
+    private boolean isSelfDividing( int num )
+    {
+        int i;
+        int tmp = num;
+        while ( tmp > 0 )
+        {
+            i = tmp % 10;
+            tmp = tmp / 10;
+            
+            if( i==0 || num%i != 0 )
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
