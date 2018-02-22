@@ -1,0 +1,54 @@
+class Solution {
+    public List<Integer> partitionLabels(String S) {
+        //1、找出每个字母的区间
+        Map<Character, P> area = new HashMap<Character, P>();
+        
+        for( int i=0; i<S.length(); i++ )
+        {
+            if( area.containsKey( S.charAt(i) ) )
+            {
+                area.get(S.charAt(i)).y = i;
+            }else
+            {
+                area.put( S.charAt(i), new P() );
+                area.get(S.charAt(i)).x = i;
+            }
+        }
+        
+        //2、区间累加，计算结果为0的就是断点
+        int[] check = new int[ S.length() ];
+        
+        for( P tmp : area.values() )
+        {
+            if( tmp.x > tmp.y )
+            {
+                continue;
+            }
+            for( int i=tmp.x; i<tmp.y; i++ )
+            {
+                check[i]++;
+            }
+        }
+        
+        //3、按照断点计算间隔长度
+        List<Integer> result = new ArrayList<Integer>();
+        int tmp = 0;
+        for( int i : check )
+        {
+            tmp++;
+            if( i == 0 )
+            {
+                result.add( tmp );
+                tmp = 0;
+            }
+        }
+        
+        return result;
+    }
+    
+    public static class P
+    {
+        public int x = -1;
+        public int y = -1;
+    }
+}
