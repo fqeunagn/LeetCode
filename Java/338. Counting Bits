@@ -15,7 +15,7 @@
 	
 	public int[] countBits5(int num) {
 		// 对于数字X，二进制形式为aaaaaaab，其中 b 部分 1 的数量为 X&1, a 部分 1 的数量等于 aaaaaaa（也即 X>>1） 的1的数量
-		// 公式1： f[X] = f[X>>1] + X&1
+		// 公式1：f[X] = f[X>>1] + X&1
 		// 公式2：f[X] = f[X/2] + X%2
 		// 使用公式2
 		
