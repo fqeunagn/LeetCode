@@ -1,6 +1,6 @@
 class Solution {
 	public int[][] reconstructQueue(int[][] people) {
-        // 解决思路和前面的方法一样，但是换成Java内建方法解决：
+        // 解决思路和前面的方法一样，但是换成Java内建方法解决，性能差异略大，内建方法16ms，自己造轮子的105ms
 		// 1、首先按 h 从高到低排序，如果 h 相等，则按 k 从小到大排序；
 		// 使用数组排序方法，直接使用匿名内部类搞定
 		Arrays.sort(people, new Comparator<int[]>(){
