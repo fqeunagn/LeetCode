@@ -1,6 +1,6 @@
 class Solution {
     public int distributeCandies(int[] candies) {
-        // 思路相同，但是Set貌似有点慢，换用数组
+        // 思路相同，但是Set貌似有点慢，换用数组：59ms，Set：101ms；
     	int[] check = new int[100000*2+1];
     	int kindCheck = 0;
     	for( int candy : candies )
