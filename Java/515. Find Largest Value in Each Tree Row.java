@@ -9,7 +9,7 @@
  */
 class Solution {
     public List<Integer> largestValues(TreeNode root) {
-        // 这题居然有空值输入，不地道，以后还是随手加上吧
+        // 这题居然有空值输入，不地道，以后还是随手加上非空校验吧
     	if( root == null )
     	{
     		return new ArrayList<Integer>();
