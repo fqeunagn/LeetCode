@@ -8,6 +8,43 @@
  */
 class Solution {
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+		ListNode result = new ListNode(-1);
+		ListNode tmpList = result;
+		
+		// 将前一种方法的所有?:都换成了if判断，耗时从91ms降低到69ms
+		int tmp = 0;
+        int num1, num2;
+		while( l1!=null || l2!=null )
+		{
+            num1 = num2 = 0;
+            if( l1 != null )
+            {
+                num1 = l1.val;
+                l1 = l1.next;
+            }
+            if( l2 != null )
+            {
+                num2 = l2.val;
+                l2 = l2.next;
+            }
+			tmp = tmp + num1 + num2;
+
+            tmpList.next = new ListNode( tmp%10 );
+			tmpList = tmpList.next;
+			tmp /= 10;
+		}
+		
+        if( tmp != 0 )
+        {
+           tmpList.next = new ListNode(tmp); 
+        }
+		
+		return result.next;
+	}
+		
+	//=====================================================//
+	
+	public ListNode addTwoNumbers3(ListNode l1, ListNode l2) {
 		// 前一个答案写的太挫了，十分不优雅，重写
 		// 后面像这种链表题目，都可以用一个头结点hold住结果，便于处理
 		ListNode result = new ListNode(-1);
